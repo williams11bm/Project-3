@@ -25,17 +25,17 @@ describe('redsquare App', () => {
     element(by.buttonText('Submit')).click();
     expect(browser.getCurrentUrl()).toContain("/dashboard");
   });
-  // 
-  // it('should create a new group message', () => {
-  //   // element(by.id('gname')).sendKeys('test');
-  //   element(by.tagName('input')).sendKeys('test');
-  //   expect(element(by.tagName('input')).getAttribute('value')).toBe('Foo123');
-  // })
-
-  it('should log out', () => {
-    element(by.partialLinkText('log-out')).click();
-    expect(browser.getCurrentUrl()).toContain("/home");
+  
+  it('should create a new group message', () => {
+    // element(by.id('gname')).sendKeys('test');
+    element(by.tagName('input')).sendKeys('test');
+    expect(element(by.tagName('input')).getAttribute('value')).toBe('Foo123');
   })
+
+  // it('should log out', () => {
+  //   element(by.partialLinkText('log-out')).click();
+  //   expect(browser.getCurrentUrl()).toContain("/home");
+  // })
 
   // it('should send a message to the bot', () => {
   //

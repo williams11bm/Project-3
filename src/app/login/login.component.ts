@@ -26,7 +26,9 @@ export class LoginComponent implements OnInit {
       username: this.username,
       password: this.password
     };
-    if(!this.sanitize(this.username) && !this.sanitize(this.password)) {
+    // if (!this.sanitize(this.username) && !this.sanitize(this.password)) {
+    //   this.http.get(`http://localhost:3000/api/users/authorized/${this.username}`)
+    if (!this.sanitize(this.username) && !this.sanitize(this.password)) {
       this.http.get(`https://red-square-api.herokuapp.com/api/users/authorized/${this.username}`)
         .subscribe(
         res => {
@@ -66,7 +68,8 @@ export class LoginComponent implements OnInit {
     //console.log(hash)
     return hash;
   }
-  sanitize(input:string) {
+
+  sanitize(input: string) {
     var regex = /[^0-9a-zA-Z' ]+/gm;
     var found = input.match(regex);
     return found ? true : false;

@@ -16,6 +16,7 @@ export class SignUpComponent implements OnInit {
   last_name: string;
   username: string;
   password: string;
+  invalidSignup: boolean = false;
   // user:any;
 
 
@@ -35,15 +36,19 @@ export class SignUpComponent implements OnInit {
     };
     // console.log(body)
 
-    if (!this.sanitize(this.first_name) && !this.sanitize(this.last_name) && !this.sanitize(this.username) && !this.sanitize(this.password)){
+    // if (!this.sanitize(this.first_name) && !this.sanitize(this.last_name) && !this.sanitize(this.username) && !this.sanitize(this.password)) {
+    //   this.http.post('http://localhost:3000/api/users/authorization', body)
+    if (!this.sanitize(this.first_name) && !this.sanitize(this.last_name) && !this.sanitize(this.username) && !this.sanitize(this.password)) {
       this.http.post('https://red-square-api.herokuapp.com/api/users/authorization', body)
         .subscribe(res => {
           console.log(res.json());
           localStorage.setItem("token", res.json().token);
           this.router.navigateByUrl('/dashboard');
         }
-
         )
+    } else {
+      console.log('Invalid Sign-up')
+      this.invalidSignup = true;
     }
   }
 
@@ -61,8 +66,9 @@ export class SignUpComponent implements OnInit {
     //console.log(hash)
     return hash;
   }
-  sanitize(input:string) {
-    var regex = /[^0-9a-zA-Z' ]+/gm;
+
+  sanitize(input: string) {
+    var regex = /[^0-9a-zA-Z\-\_!@#$% ]+/gm;
     var found = input.match(regex);
     return found ? true : false;
   }

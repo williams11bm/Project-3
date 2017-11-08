@@ -3,6 +3,8 @@
   <h2><i class="material-icons md-36 green-text text-darken-1" id="secret">lock</i>Sign Up</h2>
 </div>
 <div class="signup-container white">
+  <div *ngIf='invalidSignup' id='notification' class=''>Sign-up unsuccessful</div>
+
   <div class="row">
     <form class="col s12" #signUpForm="ngForm" (ngSubmit)="handleSubmit(signUpForm)">
       <fieldset ngModelGroup="user">
@@ -39,6 +41,6 @@
 <div class="back">
   <a class="btn main-btn btn-flat waves-effect" routerLink="/home">
     Main </a>
-      <a class="btn back-btn btn-flat waves-effect" routerLink="/login">
+  <a class="btn back-btn btn-flat waves-effect" routerLink="/login">
         Sign In </a>
 </div>

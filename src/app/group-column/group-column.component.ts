@@ -126,7 +126,12 @@ export class GroupColumnComponent implements OnInit {
           name: this.group,
           owner_id: owner.id
         }
-        return this.http.post('https://red-square-api.herokuapp.com/api/groups/new', body, options)
+
+        if (this.sanitize(body.name)) {
+          console.log('bad input!');
+        } else {
+          return this.http.post('http://localhost:3000/api/groups/new', body, options)
+        }
       })
       .subscribe(group => {
         //call chatService.createGroup() to call function that connects to this group in index.js
@@ -181,5 +186,11 @@ export class GroupColumnComponent implements OnInit {
         }
         this.router.navigateByUrl('/dashboard');
       })
+  }
+
+  sanitize(input: string) {
+    var regex = /[^0-9a-zA-Z\-\_!@#$% ]+/gm;
+    var found = input.match(regex);
+    return found ? true : false;
   }
 }

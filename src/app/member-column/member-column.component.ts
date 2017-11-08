@@ -51,7 +51,7 @@ export class MemberColumnComponent implements OnInit {
 
   inviteMember() {
     let users = this.users
-    if (!users.includes(this.member)) { console.log('nope nope nope') }
+    if (!users.includes(this.member)) { console.log('User not found in Database') }
     else {
       let headers = new Headers();
       headers.append('Authorization', 'Bearer ' + localStorage.getItem('token'))
