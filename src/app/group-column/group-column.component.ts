@@ -66,14 +66,14 @@ export class GroupColumnComponent implements OnInit {
       .subscribe((message) => {
         //console.log('group', this.group_id)
         //console.log('message group id', message.group_id)
-        let reset_unread = (this.group_id === message.group_id) ? true : false;
-        //console.log(reset_unread)
-        this.http.put(`https://red-square-api.herokuapp.com/api/messages/notifications/${message.group_id}`,
-          { reset_unread: reset_unread }, options)
-          .subscribe(res => {
-            this.chatService.sendGroupUpdates()
-            console.log('new message!', res.json())
-          })
+        // let reset_unread = (this.group_id === message.group_id) ? true : false;
+        // //console.log(reset_unread)
+        // this.http.put(`https://red-square-api.herokuapp.com/api/messages/notifications/${message.group_id}`,
+        //   { reset_unread: reset_unread }, options)
+        //   .subscribe(res => {
+        //     this.chatService.sendGroupUpdates()
+        //     console.log('new message!', res.json())
+        //   })
       })
   }
 
