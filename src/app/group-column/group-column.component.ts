@@ -130,7 +130,7 @@ export class GroupColumnComponent implements OnInit {
         if (this.sanitize(body.name)) {
           console.log('bad input!');
         } else {
-          return this.http.post('http://localhost:3000/api/groups/new', body, options)
+          return this.http.post('https://red-square-api.herokuapp.com/api/groups/new', body, options)
         }
       })
       .subscribe(group => {
