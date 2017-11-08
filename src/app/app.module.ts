@@ -22,6 +22,7 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { LoggingOutComponent } from './logging-out/logging-out.component';
 import { HomeNavComponent } from './home-nav/home-nav.component';
+import { UserSearchComponent } from './user-search/user-search.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { HomeNavComponent } from './home-nav/home-nav.component';
     HomeComponent,
     LoginComponent,
     LoggingOutComponent,
-    HomeNavComponent
+    HomeNavComponent,
+    UserSearchComponent
   ],
   imports: [
     BrowserModule,
