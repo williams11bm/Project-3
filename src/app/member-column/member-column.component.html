@@ -1,0 +1,27 @@
+<div class="right-col column grey lighten-4 col s2">
+  <div class="member-col">
+    <div class="col-header black-text center">
+      <span id='header'><h3>members</h3></span>
+    </div>
+
+    <div *ngIf="isOwner === true">
+      <input #searchBox type="text" [(ngModel)]="member" placeholder="username" (keyup)="$event.keyCode == 13 && inviteMember()" pattern="[a-zA-Z0-9!@#$%^-_|.]">
+      <ng-container *ngIf="member.length > 0">
+        <div *ngFor="let user of users | filterBy: member" class="search-result" (click)="setMember(user)">
+          {{ user }}
+        </div>
+      </ng-container>
+      <div *ngIf="(users | filterBy: member).length === 0" class="search-result">No matching users</div>
+      <!-- <button (click)="inviteMember()" class="red btn"><i class="material-icons">add</i></button> -->
+    </div>
+    <ul *ngFor="let member of members" class=" card collection">
+      <li class="collection-item avatar">
+        <i class="material-icons circle red">person</i>
+        <span class="title top">{{member.username}}</span>
+        <ng-container *ngIf="(isOwner === true && owner_id !== member.id) || ((member.id === user_id) && isOwner !== true )">
+          <i (click)="removeUser(member.id)" class="material-icons" id='remove-user-btn'>close</i>
+        </ng-container>
+      </li>
+    </ul>
+  </div>
+</div>

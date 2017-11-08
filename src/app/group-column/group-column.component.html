@@ -1,0 +1,30 @@
+<div class="left-col column grey lighten-4 col s2">
+  <div class="group-col">
+    <div class="col-header black-text center">
+      <span id='header'><h3>groups</h3></span>
+    </div>
+    <input id="gname" [(ngModel)]="group" (keyup)="$event.keyCode == 13 && createGroup()" placeholder="Enter group name"/>
+    <button class="btn red" (click)="createGroup()"><i class="material-icons">add</i></button>
+    <ul *ngFor="let group of groups" class="collection card">
+      <li class="collection-item avatar">
+        <i class="material-icons red circle">group</i>
+        <div class='flex'>
+          <input #groupInput [id]='group.id' class="title" [value]='group.name'>
+          <div class='row'>
+            <i #elem (click)="updateGroupName(elem.id, groupInput.value)" [id]='group.id' class="fa fa-pencil edit-pencil"></i>
+            <i #delete (click)="deleteGroup(delete.id)" [id]="group.id" class="fa fa-times-circle"></i>
+          </div>
+        </div>
+        <br>
+        <!-- TODO: need to make notifications look better -->
+        <!-- TODO: most recent message preview? -->
+        <div *ngIf="(group.userGroup.unread_messages > 0);else noUnreads">
+          <b>{{group.userGroup.unread_messages}} unread message(s)!</b>
+        </div>
+        <ng-template #noUnreads>no unread messages</ng-template>
+
+        <a routerLink="/messages/{{group.id}}" (click)="resetUnreads(group.id)" >See Conversation</a>
+      </li>
+    </ul>
+  </div>
+</div>

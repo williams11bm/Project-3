@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "",
+    "password": null,
+    "database": "redsquare_db",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "",
+    "password": null,
+    "database": "redsquare_db",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "production": {
+    "database": "d4ns6ieho39q03",
+    "host": "ec2-50-16-204-127.compute-1.amazonaws.com",
+    "username": "wzzbvfzbxpmqsa",
+    "password": "505b685770f1f79ac7c6e8537b32a0a9f86be3068b771a865dd5f61f1258d76b",
+    "dialect": "postgres"
+  }
+}

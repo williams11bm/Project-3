@@ -1,0 +1,9 @@
+<div>
+     <input type="text" [(ngModel)]="userFilter" placeholder="username">
+     <ul>
+       <li *ngFor="let user of users | filterBy: userFilter">
+         <ng-container *ngIf="userFilter.length > 0">{{ user }}</ng-container>
+       </li>
+       <li *ngIf="(users | filterBy: userFilter).length === 0">No matching elements</li>
+     </ul>
+ </div>

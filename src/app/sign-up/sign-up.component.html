@@ -1,0 +1,44 @@
+<app-home-nav></app-home-nav>
+<div class="identifier center-align" id="slide">
+  <h2><i class="material-icons md-36 green-text text-darken-1" id="secret">lock</i>Sign Up</h2>
+</div>
+<div class="signup-container white">
+  <div class="row">
+    <form class="col s12" #signUpForm="ngForm" (ngSubmit)="handleSubmit(signUpForm)">
+      <fieldset ngModelGroup="user">
+        <div class="row black-text">
+          <div class="input-field col s6">
+            <input id="first_name" placeholder="First Name" type="text" [(ngModel)]="first_name" name="first_name">
+            <label for="first_name"></label>
+          </div>
+          <div class="input-field col s6">
+            <input id="last_name" placeholder="Last Name" type="text" class="validate" [(ngModel)]="last_name" name="last_name">
+            <label for="last_name"></label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="username" type="text" placeholder="username" class="validate" [(ngModel)]="username" name="username">
+            <label for="username"></label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="password" placeholder="password" type="password" class="validate" [(ngModel)]="password" name="password">
+            <label for="password"></label>
+          </div>
+        </div>
+        <div class="row">
+          <button type="submit" name="button" class="btn">Submit</button>
+        </div>
+      </fieldset>
+
+    </form>
+  </div>
+</div>
+<div class="back">
+  <a class="btn main-btn btn-flat waves-effect" routerLink="/home">
+    Main </a>
+      <a class="btn back-btn btn-flat waves-effect" routerLink="/login">
+        Sign In </a>
+</div>

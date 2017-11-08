@@ -1,0 +1,14 @@
+#header {
+	font-family: 'Lobster', cursive;
+	font-size: 2em !important;
+	color: #f44336 !important;
+}
+.nav-wrapper {
+	overflow: hidden;
+}
+
+@media only screen and (max-device-width: 700px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
+ .left, .right {
+	 display: none;
+ }
+}

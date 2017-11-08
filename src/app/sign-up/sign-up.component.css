@@ -1,0 +1,56 @@
+.signup-container {
+  background-color: #fff;
+  border-radius: 10px;
+  position: absolute;
+  top: 20%;
+  left: 30%;
+  width: 40%;
+  height: 60%;
+  padding: 30px 20px 0 20px;
+}
+
+.back-btn {
+  position: absolute;
+  top: 83%;
+  left: 62%;
+}
+
+.main-btn {
+  position: absolute;
+  top: 83%;
+  left: 30%;
+}
+
+.create-btn {
+  text-align: center;
+  /*margin-top: 50px;*/
+}
+
+.identifier {
+  position: absolute;
+  text-align: left;
+  top: 10%;
+  left: 30%;
+  width: 434px;
+  font-family: 'Nobile', sans-serif;
+}
+
+#info-box {
+  margin-top: 5%;
+}
+
+.material-icons.md-18 {
+  font-size: 18px;
+}
+
+.material-icons.md-24 {
+  font-size: 24px;
+}
+
+.material-icons.md-36 {
+  font-size: 36px;
+}
+
+.material-icons.md-48 {
+  font-size: 48px;
+}

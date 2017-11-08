@@ -1,0 +1,54 @@
+#remove-user-btn {
+  margin-left: 1em;
+  margin-top: .3em;
+}
+
+.top {
+  margin-top: .5em;
+}
+
+li {
+  display: flex;
+  justify-content: space-between;
+}
+
+.member-col {
+  overflow: scroll;
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+.search-result {
+  border-bottom: 1px solid gray;
+  border-left: 1px solid gray;
+  border-right: 1px solid gray;
+  width: 100%;
+  height: 50px;
+  padding: 5px;
+  background-color: white;
+  cursor: pointer;
+}
+
+.search-result:hover {
+  color: #eee;
+  background-color: #f44336;
+}
+
+input[type=text]:focus {
+  border-bottom: 1px solid #f44336 !important;
+  box-shadow: 0 1px 0 0 #f44336 !important;
+}
+
+
+@media only screen and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
+  .right-col {
+    display: none;
+  }
+}
+
+
+/*#search-box{
+  width: 200px;
+  height: 200px;
+}*/

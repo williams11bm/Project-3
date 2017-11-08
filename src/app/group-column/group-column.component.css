@@ -1,0 +1,45 @@
+.group-col {
+  overflow: scroll;
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+
+input[type=text]:focus {
+  border-bottom: 1px solid #f44336 !important;
+  box-shadow: 0 1px 0 0 #f44336 !important;
+}
+
+.flex {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.row {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.fa {
+  /*width: 12px;
+  height: 66px;*/
+  margin-top: 1em;
+  margin-left: .5em;
+}
+
+
+
+@media only screen and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
+  .left-col {
+    width: 100vw !important;
+    height: 40vh;
+    overflow-y: hidden;
+  }
+  .group-col {
+    overflow: scroll;
+    height: 100%;
+    width: 100%;
+    position: relative;
+  }
+}

@@ -1,0 +1,37 @@
+<div class="middle-col column  grey lighten-4 col s8 messages-col">
+  <div #scrollMe [scrollTop]="scrollMe.scrollHeight" class="messages">
+    <ul *ngFor="let message of messages">
+
+      <li *ngIf="isSender(message.sender_id) && !containsLink(message.content)" class="my-message">{{message.content}}</li>
+
+      <li *ngIf="isSender(message.sender_id) && containsLink(message.content) && !containsAudio(message.content)" class="my-message">{{message.content}} <a href='{{formatLinkMessage(message.content)}}' target='_blank'>link</a></li>
+
+      <li *ngIf="isSender(message.sender_id) && containsAudio(message.content)" class="my-message">
+        {{formatAudioHeader(message.content)}}
+        <br>
+        <audio controls>
+          <source src='{{formatAudioMessage(message.content)}}'>
+        </audio>
+      </li>
+
+      <li *ngIf="!isSender(message.sender_id) && message.content !== '' && !containsLink(message.content)" class="message">{{message.content}}</li>
+
+      <li *ngIf="!isSender(message.sender_id) && message.content !== '' && containsLink(message.content) && !containsAudio(message.content)" class="message">{{message.content}} <a href='{{formatLinkMessage(message.content)}}' target='_blank'>link</a></li>
+
+      <li *ngIf="!isSender(message.sender_id) && containsAudio(message.content) && message.content !== ''" class="message">
+        {{formatAudioHeader(message.content)}}
+        <br>
+        <audio controls>
+          <source src='{{formatAudioMessage(message.content)}}'>
+        </audio>
+      </li>
+
+    </ul>
+  </div>
+
+  <div class="input-area black white-text round black-form-wrapper">
+    <form autocomplete="off" class="black-form" action="index.html" method="post">
+      <input [(ngModel)]="message" (keyup)="$event.keyCode == 13 && sendMessage()" autocomplete="off" type="text" name="message" value="" placeholder="Type message here" class="black-input">
+    </form>
+  </div>
+</div>
