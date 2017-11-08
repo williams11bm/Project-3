@@ -22,7 +22,7 @@ import 'rxjs/add/operator/throttleTime';
 })
 export class MessageColumnComponent implements OnInit {
   messagesArray: Message[];
-  group_id: number;
+  group_id: any;
   owner_id: number;
   members: any[];
   message: string;
@@ -31,6 +31,7 @@ export class MessageColumnComponent implements OnInit {
   private subscription: any;
   first_name: string;
   username: string;
+  dashboard: boolean = false;
 
   constructor(
     private messageService: MessageService,
@@ -49,7 +50,7 @@ export class MessageColumnComponent implements OnInit {
       let headers = new Headers();
       headers.append('Authorization', 'Bearer ' + localStorage.getItem('token'));
       let options = new RequestOptions({ headers: headers });
-      this.group_id = +params['id'];
+      this.group_id = params['id'];
       this.http.get(`https://red-square-api.herokuapp.com/api/messages/${this.group_id}`, options)
         .subscribe((messages) => {
           this.user_id = messages.json().user_id;
@@ -212,6 +213,12 @@ export class MessageColumnComponent implements OnInit {
     return message
   }
 
+  notDashboard() {
+    if (!this.group_id) {
+      return false
+    }
+    return true
+  }
 
   isSender(sender_id) {
     return this.user_id === sender_id;

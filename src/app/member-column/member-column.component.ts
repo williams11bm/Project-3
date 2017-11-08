@@ -101,6 +101,7 @@ export class MemberColumnComponent implements OnInit {
     this.http.delete(`https://red-square-api.herokuapp.com/api/groups/${this.group_id}/${user_id}`, options)
       .subscribe(res => {
         console.log('removing user', res.json())
+        this.chatService.sendGroupUpdates()
         this.getMembers()
       })
   }
