@@ -9,7 +9,6 @@ import { Ng2FilterPipeModule } from 'ng2-filter-pipe';
 
 import { AppComponent } from './app.component';
 
-import { MessageService } from './message.service';
 import { ChatService } from './chat.service';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
@@ -22,7 +21,6 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { LoggingOutComponent } from './logging-out/logging-out.component';
 import { HomeNavComponent } from './home-nav/home-nav.component';
-import { UserSearchComponent } from './user-search/user-search.component';
 
 
 @NgModule({
@@ -38,9 +36,8 @@ import { UserSearchComponent } from './user-search/user-search.component';
     HomeComponent,
     LoginComponent,
     LoggingOutComponent,
-    HomeNavComponent,
-    UserSearchComponent
-  ],
+    HomeNavComponent
+    ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -49,7 +46,6 @@ import { UserSearchComponent } from './user-search/user-search.component';
     Ng2FilterPipeModule
   ],
   providers: [
-    MessageService,
     ChatService
   ],
   bootstrap: [AppComponent]

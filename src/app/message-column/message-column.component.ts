@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Message } from './../message';
 
 //import { AuthService } from './auth.service';
-import { MessageService } from './../message.service';
 import { ChatService } from '../chat.service';
 import { FormsModule } from '@angular/forms';
 // import {ApiAiClient} from "api-ai-javascript";
@@ -34,17 +33,12 @@ export class MessageColumnComponent implements OnInit {
   dashboard: boolean = false;
 
   constructor(
-    private messageService: MessageService,
     private chatService: ChatService,
     private http: Http,
     private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
-    this.messageService.getMessages()
-      .then(messages => {
-        this.messagesArray = messages;
-      });
 
     this.route.params.subscribe(params => {
       let headers = new Headers();

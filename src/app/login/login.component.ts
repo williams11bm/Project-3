@@ -26,8 +26,7 @@ export class LoginComponent implements OnInit {
       username: this.username,
       password: this.password
     };
-    // if (!this.sanitize(this.username) && !this.sanitize(this.password)) {
-    //   this.http.get(`http://localhost:3000/api/users/authorized/${this.username}`)
+
     if (!this.sanitize(this.username) && !this.sanitize(this.password)) {
       this.http.get(`https://red-square-api.herokuapp.com/api/users/authorized/${this.username}`)
         .subscribe(
