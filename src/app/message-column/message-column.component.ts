@@ -61,7 +61,6 @@ export class MessageColumnComponent implements OnInit {
 
     this.chatService
       .getMessages()
-      .throttleTime(10) //prevent spamming
       .filter((message) => message.content.trim().length > 0) //filter out empty messages
       .subscribe((message) => {
         if (this.group_id == message.group_id) {

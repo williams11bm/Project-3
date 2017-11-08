@@ -62,7 +62,6 @@ export class GroupColumnComponent implements OnInit {
     //used for notifcations/# unread messages
     this.chatService
       .getMessages()
-      .throttleTime(10) //prevent spamming
       .filter((message) => message.content.trim().length > 0) //filter out empty messages
       .subscribe((message) => {
         //console.log('group', this.group_id)
