@@ -20,7 +20,7 @@ export class NavbarComponent implements OnInit {
     let headers = new Headers();
     headers.append('Authorization', 'Bearer ' + localStorage.getItem('token'));
     let options = new RequestOptions({ headers: headers });
-    this.http.get('http://localhost:3000/api/users/user',options)
+    this.http.get('https://red-square-api.herokuapp.com/api/users/user',options)
     .subscribe(res => {
       let user = res.json();
       this.first_name = user.first_name;
