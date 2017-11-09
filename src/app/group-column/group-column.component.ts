@@ -9,6 +9,7 @@ import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/forkJoin';
+import 'rxjs/add/operator/throttleTime';
 
 @Component({
   selector: 'app-group-column',
@@ -57,23 +58,25 @@ export class GroupColumnComponent implements OnInit {
 
     this.route.params.subscribe(params => {
       this.group_id = +params['id']
+      console.log('group IDD', this.group_id)
     })
 
-    //used for notifcations/# unread messages
+    // used for notifcations/# unread messages
     this.chatService
       .getMessages()
       .filter((message) => message.content.trim().length > 0) //filter out empty messages
       .subscribe((message) => {
-        //console.log('group', this.group_id)
-        //console.log('message group id', message.group_id)
-        // let reset_unread = (this.group_id === message.group_id) ? true : false;
-        // //console.log(reset_unread)
-        // this.http.put(`https://red-square-api.herokuapp.com/api/messages/notifications/${message.group_id}`,
-        //   { reset_unread: reset_unread }, options)
-        //   .subscribe(res => {
-        //     this.chatService.sendGroupUpdates()
-        //     console.log('new message!', res.json())
-        //   })
+        let reset_unread = (this.group_id === +message.group_id) ? true : false;
+        var headers = new Headers();
+        headers.append('Authorization', 'Bearer ' + localStorage.getItem('token'))
+        let options = new RequestOptions({ headers: headers })
+        this.http.put(`https://red-square-api.herokuapp.com/api/messages/notifications/${this.group_id}`,
+          { reset_unread: reset_unread }, options)
+          .subscribe(res => {
+            console.log('this group id', this.group_id)
+            console.log('message group id',+message.group_id)
+            this.chatService.sendGroupUpdates()
+          })
       })
   }
 

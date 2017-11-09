@@ -44,11 +44,14 @@ export class MessageColumnComponent implements OnInit {
       let headers = new Headers();
       headers.append('Authorization', 'Bearer ' + localStorage.getItem('token'));
       let options = new RequestOptions({ headers: headers });
-      this.group_id = params['id'];
+      this.group_id = +params['id'];
+      console.log('message thread id', this.group_id)
       this.http.get(`https://red-square-api.herokuapp.com/api/messages/${this.group_id}`, options)
         .subscribe((messages) => {
+          console.log('messages on init',messages.json())
           this.user_id = messages.json().user_id;
-          this.messages = messages.json().messages;
+          this.messages = this.sortById(messages.json().messages,'id')
+          console.log(this.messages)
           this.username = messages.json().username;
         })
     })
@@ -57,32 +60,25 @@ export class MessageColumnComponent implements OnInit {
       .getMessages()
       .filter((message) => message.content.trim().length > 0) //filter out empty messages
       .subscribe((message) => {
+        console.log('GETTING MESSAGE')
         if (this.group_id == message.group_id) {
           this.messages.push(message);
-          let reset_unread = (this.group_id === message.group_id) ? true : false;
-          //console.log(reset_unread)
-          var headers = new Headers();
-          headers.append('Authorization', 'Bearer ' + localStorage.getItem('token'))
-          let options = new RequestOptions({ headers: headers })
-          console.log('PUTTING')
-          this.http.put(`https://red-square-api.herokuapp.com/api/messages/notifications/all/${this.group_id}`,null,options)
-          .subscribe(response => {
-            console.log('response', response)
-            this.http.put(`https://red-square-api.herokuapp.com/api/messages/notifications/${message.group_id}`,
-              { reset_unread: reset_unread }, options)
-              .subscribe(res => {
-                this.chatService.sendGroupUpdates()
-                console.log('new message!', res.json())
-              })
-          })
         }
       })
+  }
+
+  sortById(array, id) {
+    return array.sort(function(a, b) {
+        var x = a[id]; var y = b[id];
+        return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+    });
   }
 
   sendMessage() {
     var message = this.message,
       bot = "@bot";
     if (message.includes(bot)) {
+      console.log('message', message)
       this.toBot(this.message);
     }
 
@@ -90,9 +86,14 @@ export class MessageColumnComponent implements OnInit {
     headers.append('Authorization', 'Bearer ' + localStorage.getItem('token'))
     let options = new RequestOptions({ headers: headers })
     this.http.post('https://red-square-api.herokuapp.com/api/messages/new/' + this.group_id, { message: this.message }, options)
-      .subscribe((message) => {
-        this.chatService.sendMessage({ content: this.username + ': ' + this.message, group_id: this.group_id, sender_id: this.user_id });
-        this.message = '';
+      .subscribe((res) => {
+        console.log('POSTING', 'group id: ' +this.group_id+ ' message: ' + this.message)
+        console.log('POST response: ', res.json())
+        this.http.put(`https://red-square-api.herokuapp.com/api/messages/notifications/all/${this.group_id}`,null,options)
+        .subscribe(response => {
+          this.chatService.sendMessage({ content: this.username + ': ' + this.message, group_id: this.group_id, sender_id: this.user_id });
+          this.message = '';
+        })
       })
   }
 
